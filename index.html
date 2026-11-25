@@ -63,7 +63,7 @@ h2 em{font-style:normal;color:var(--indigo)}
 
 /* ============ 封面 ============ */
 .cover{position:relative;height:100svh;min-height:560px;overflow:hidden;background:#20282a}
-.cover img{
+.cover img,.cover video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 42%;
   filter:saturate(.9) contrast(1.02);
 }
@@ -365,7 +365,9 @@ html.js .reveal.in{opacity:1;transform:none}
 <div id="progress"></div>
 <!-- ===== 页面 1：封面 ===== -->
 <header class="cover">
-  <img src="/shandongpth/assets/cover.jpg" alt="山东老城清晨的街巷，晨光落在青砖墙上，早餐摊升起热气，几位行人站在巷中交谈" fetchpriority="high">
+  <video id="cover-video" src="/shandongpth/cover.mp4" poster="/shandongpth/cover.jpg"
+         autoplay muted loop playsinline preload="auto" disablepictureinpicture
+         aria-label="山东老城清晨的街巷，晨光落在青砖墙上，早餐摊的热气不断升腾，几位行人站在巷中交谈"></video>
   <div class="cover-inner">
     <div class="cover-title">一语相通<span class="t2">万象共生</span></div>
     <div class="cover-meta">
@@ -388,7 +390,7 @@ html.js .reveal.in{opacity:1;transform:none}
     <!-- 场景一 -->
     <div class="scene" role="button" tabindex="0" aria-expanded="false" data-scene="市场">
       <div class="scene-media">
-        <img src="/shandongpth/assets/market.jpg" alt="山东乡镇集市，一位摊主与一位顾客隔着菜摊说话，摊上摆着成筐的葱和西红柿" loading="lazy">
+        <img src="/shandongpth/market.jpg" alt="山东乡镇集市，一位摊主与一位顾客隔着菜摊说话，摊上摆着成筐的葱和西红柿" loading="lazy">
         <span class="scene-no">场景一</span>
         <span class="scene-place">集市摊位</span>
       </div>
@@ -405,7 +407,7 @@ html.js .reveal.in{opacity:1;transform:none}
     <!-- 场景二 -->
     <div class="scene" role="button" tabindex="0" aria-expanded="false" data-scene="大厅">
       <div class="scene-media">
-        <img src="/shandongpth/assets/hall.jpg" alt="基层政务服务大厅，窗口工作人员与办事群众面对面交谈，桌上摊着材料" loading="lazy">
+        <img src="/shandongpth/hall.jpg" alt="基层政务服务大厅，窗口工作人员与办事群众面对面交谈，桌上摊着材料" loading="lazy">
         <span class="scene-no">场景二</span>
         <span class="scene-place">政务大厅</span>
       </div>
@@ -421,7 +423,7 @@ html.js .reveal.in{opacity:1;transform:none}
     <!-- 场景三 -->
     <div class="scene" role="button" tabindex="0" aria-expanded="false" data-scene="院落">
       <div class="scene-media">
-        <img src="/shandongpth/assets/yard.jpg" alt="北方社区老楼下的院落，两位邻里站着互相打招呼，一位手持购物袋" loading="lazy">
+        <img src="/shandongpth/yard.jpg" alt="北方社区老楼下的院落，两位邻里站着互相打招呼，一位手持购物袋" loading="lazy">
         <span class="scene-no">场景三</span>
         <span class="scene-place">社区邻里</span>
       </div>
@@ -491,7 +493,7 @@ html.js .reveal.in{opacity:1;transform:none}
   <p class="lead reveal" style="font-size:13.5px;color:var(--ink-mute)">1910 年关东人口约 1800 余万，1949 年增至近 4000 万；38 年间，仅山东平均每年就有约 48 万人经陆路、海路北上。<sup><a href="https://www.neac.gov.cn/seac/c103391/202301/1160027.shtml" target="_blank" rel="noopener" style="color:var(--indigo);text-decoration:none">[1]</a></sup></p>
 
   <figure class="wide-fig reveal">
-    <img src="/shandongpth/assets/migration.jpg" alt="泛黄影像风格的示意画面：二十世纪初的一群人挑担推车走在土路上，走向远处的地平线" loading="lazy">
+    <img src="/shandongpth/migration.jpg" alt="泛黄影像风格的示意画面：二十世纪初的一群人挑担推车走在土路上，走向远处的地平线" loading="lazy">
     <figcaption>氛围示意图，非史料照片。下面的路线也不是精确地图，只标出方向与顺序。</figcaption>
   </figure>
 
@@ -734,11 +736,29 @@ document.documentElement.classList.add('js');
   'use strict';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- 封面动态视频 ---------- */
+  var coverVideo = document.getElementById('cover-video');
+  if (coverVideo){
+    if (reduced){
+      coverVideo.pause();
+    } else {
+      var tryPlayCover = function(){
+        var p = coverVideo.play();
+        if (p && p.catch) p.catch(function(){ /* 移动端省流或策略拦截时静默回落到海报帧 */ });
+      };
+      tryPlayCover();
+      document.addEventListener('touchstart', function once(){
+        tryPlayCover();
+        document.removeEventListener('touchstart', once);
+      }, {passive:true});
+    }
+  }
+
   /* ---------- 场景对话录音（本地音频） ---------- */
   var audioMap = {
-    "市场": new Audio("/shandongpth/assets/1.mp3"),
-    "大厅": new Audio("/shandongpth/assets/2.mp3"),
-    "院落": new Audio("/shandongpth/assets/3.mp3")
+    "市场": new Audio("/shandongpth/1.mp3"),
+    "大厅": new Audio("/shandongpth/2.mp3"),
+    "院落": new Audio("/shandongpth/3.mp3")
   };
   var currentAudio = null;
   function stopAllAudio(){
