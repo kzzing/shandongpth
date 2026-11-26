@@ -241,19 +241,58 @@ html.js .reveal.in{opacity:1;transform:none}
 .wide-fig img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;filter:saturate(.78)}
 .wide-fig figcaption{padding:8px 12px;font-size:11.5px;color:var(--ink-mute);letter-spacing:.06em;background:var(--paper-2)}
 
-/* ============ 调研结构占位 ============ */
-.mods{display:grid;grid-template-columns:1fr;gap:12px;margin-top:28px}
-.mod{border:1px dashed rgba(43,75,106,.34);border-radius:2px;padding:15px 15px 14px;background:rgba(247,242,230,.34)}
+/* ============ 调研数据 ============ */
+.mods{display:grid;grid-template-columns:1fr;gap:12px;margin-top:28px;align-items:start}
+.mod{border:1px solid var(--line);border-radius:2px;padding:15px 15px 14px;background:rgba(247,242,230,.34)}
 .mod-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
 .mod-name{font-family:var(--serif);font-size:15.5px;letter-spacing:.03em;color:var(--ink)}
 .mod-tag{font-size:11px;letter-spacing:.1em;color:var(--indigo);white-space:nowrap}
 .mod-note{margin-top:6px;font-size:12.5px;color:var(--ink-mute);line-height:1.75}
-.mod-bars{display:flex;flex-direction:column;gap:6px;margin-top:12px}
-.mod-bar{height:8px;background:repeating-linear-gradient(90deg,rgba(43,75,106,.24) 0 6px,transparent 6px 12px);border-radius:1px}
-.mod-bar:nth-child(1){width:64%}
-.mod-bar:nth-child(2){width:82%}
-.mod-bar:nth-child(3){width:46%}
-.mod-bar:nth-child(4){width:70%}
+
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:13px;border:1px solid var(--line-soft);background:var(--line-soft)}
+.stat{background:rgba(252,248,240,.7);padding:9px 10px 10px;display:flex;flex-direction:column;justify-content:center}
+.stat-v{font-family:var(--serif);font-size:18px;line-height:1.3;color:var(--ink)}
+.stat-v i{font-style:normal;font-size:10.5px;color:var(--ink-mute);margin-left:2px;letter-spacing:.03em}
+.stat-k{font-size:10.5px;letter-spacing:.03em;color:var(--ink-mute);margin-top:1px;line-height:1.6}
+
+.chart{margin-top:14px}
+.chart-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:10px;letter-spacing:.04em;color:var(--ink-mute);margin-bottom:7px}
+.chart-legend span i{display:inline-block;width:8px;height:6px;margin-right:4px;vertical-align:0;border-radius:1px}
+.lg-a{background:rgba(43,75,106,.26)}
+.lg-b{background:rgba(43,75,106,.55)}
+.lg-c{background:var(--indigo)}
+.bar-row{display:grid;grid-template-columns:50px 1fr 32px;gap:9px;align-items:center;padding:6px 0 5px;line-height:1.5}
+.bar-row+.bar-row{border-top:1px solid var(--line-soft)}
+.bar-lab{font-size:11.5px;color:var(--ink-soft);letter-spacing:.02em;line-height:1.4}
+.bars{display:grid;gap:4px}
+.bar{height:6px;background:rgba(43,75,106,.1);position:relative;border-radius:1px;overflow:hidden}
+.bar b{display:block;height:100%;background:var(--indigo);border-radius:1px}
+.bar.low b{opacity:.3}
+.bar.mid b{opacity:.58}
+.bar-val{font-size:11px;color:var(--ink-soft);text-align:right;letter-spacing:.02em}
+.rank-row{display:grid;grid-template-columns:104px 1fr 42px;gap:8px;align-items:center;padding:7px 0;line-height:1.5}
+.rank-row+.rank-row{border-top:1px solid var(--line-soft)}
+.rank-lab{font-size:11px;color:var(--ink-soft);line-height:1.5}
+.rank-lab em{font-style:normal;font-size:10px;color:var(--cinnabar);margin-right:3px}
+.rank-bar{height:10px;background:rgba(43,75,106,.1);border-radius:1px;overflow:hidden}
+.rank-bar b{display:block;height:100%;background:var(--indigo);border-radius:1px}
+.rank-bar b:first-child{opacity:.92}
+.rank-row:first-child .rank-bar b{background:var(--indigo)}
+.rank-val{font-size:11.5px;color:var(--ink);text-align:right;letter-spacing:.02em}
+
+.diff-group+.diff-group{margin-top:12px;padding-top:11px;border-top:1px dashed var(--line)}
+.diff-h{font-size:10.5px;letter-spacing:.1em;color:var(--indigo);margin-bottom:4px}
+.diff-row{display:grid;grid-template-columns:74px 1fr 34px;gap:9px;align-items:center;padding:4px 0;line-height:1.5}
+.diff-lab{font-size:11px;color:var(--ink-mute);line-height:1.5}
+.diff-bar{height:6px;background:rgba(43,75,106,.1);border-radius:1px;overflow:hidden}
+.diff-bar b{display:block;height:100%;background:var(--indigo);border-radius:1px;opacity:.85}
+.diff-val{font-size:10.5px;color:var(--ink-soft);text-align:right}
+
+.data-note{
+  margin-top:14px;padding:11px 13px;background:var(--indigo-wash);border-left:2px solid var(--indigo);
+  font-size:12px;line-height:1.8;color:var(--ink-soft);
+}
+.data-note b{font-weight:500;color:var(--indigo)}
 .struct-note{margin-top:18px;font-size:12.5px;line-height:1.85;color:var(--ink-mute);padding-top:14px;border-top:1px solid var(--line-soft)}
 
 /* ============ 深度解读 ============ */
@@ -270,11 +309,12 @@ html.js .reveal.in{opacity:1;transform:none}
 .slots-title{font-family:var(--serif);font-size:14.5px;letter-spacing:.04em}
 .slots-title span{display:block;font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;color:var(--ink-mute);margin-top:3px}
 .slots-flag{font-size:10.5px;letter-spacing:.1em;color:var(--cinnabar);border:1px solid rgba(166,66,47,.34);padding:3px 8px;white-space:nowrap}
-.slot{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.slot{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;padding:14px 0;border-bottom:1px solid var(--line-soft)}
 .slot:last-child{border-bottom:0}
 .slot-name{font-size:13.5px;color:var(--ink-soft);line-height:1.6}
-.slot-track{height:7px;width:100%;margin-top:7px;border-radius:1px;background:repeating-linear-gradient(90deg,rgba(43,75,106,.2) 0 5px,transparent 5px 10px)}
-.slot-val{font-size:11.5px;letter-spacing:.08em;color:var(--indigo);white-space:nowrap}
+.slot-track{display:block;height:7px;width:100%;margin-top:8px;border-radius:1px;background:rgba(43,75,106,.1);overflow:hidden}
+.slot-track b{display:block;height:100%;background:var(--indigo);border-radius:1px}
+.slot-val{font-family:var(--serif);font-size:14px;letter-spacing:.03em;color:var(--indigo);white-space:nowrap;padding-bottom:1px}
 
 /* 立场 */
 .stance{
@@ -285,6 +325,62 @@ html.js .reveal.in{opacity:1;transform:none}
 .stance-text{font-family:var(--serif);font-size:15.5px;line-height:2;color:var(--ink);letter-spacing:.01em}
 .stance-text em{font-style:normal;color:var(--indigo);font-weight:700}
 
+/* ============ 人物卡片（访谈画像） ============ */
+.people{margin-top:26px;display:grid;gap:12px}
+.person{border:1px solid var(--line);background:rgba(255,255,255,.22)}
+.person summary{
+  list-style:none;cursor:pointer;padding:15px 15px 14px;
+  display:grid;grid-template-columns:42px 1fr;gap:13px;align-items:start;
+}
+.person summary::-webkit-details-marker{display:none}
+.p-ava{
+  width:42px;height:42px;border-radius:50%;flex:none;margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(166,66,47,.42);background:var(--indigo-wash);
+  font-family:var(--serif);font-size:17px;color:var(--indigo);letter-spacing:.02em;
+}
+.p-main{min-width:0}
+.p-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.p-name{font-family:var(--serif);font-size:16.5px;letter-spacing:.03em}
+.p-age{font-size:11.5px;color:var(--ink-mute)}
+.p-tag{
+  margin-left:auto;font-size:10px;letter-spacing:.1em;color:var(--cinnabar);
+  border:1px solid rgba(166,66,47,.3);padding:2px 6px;line-height:1.5;white-space:nowrap;
+}
+.p-meta{margin-top:6px;font-size:11.5px;line-height:1.7;color:var(--ink-mute);letter-spacing:.02em}
+.p-meta i{font-style:normal;color:var(--line);margin:0 5px}
+.p-quote{
+  margin-top:9px;font-family:var(--serif);font-size:13.5px;line-height:1.85;color:var(--ink);
+  letter-spacing:.01em;padding-left:10px;border-left:1px solid rgba(43,75,106,.28);
+}
+.p-cue{
+  margin-top:10px;font-size:10.5px;letter-spacing:.12em;color:var(--ink-mute);
+  display:flex;align-items:center;gap:6px;
+}
+.p-cue::before{content:"";width:12px;height:1px;background:var(--ink-mute);opacity:.6}
+.p-cue .t-close{display:none}
+.person[open] .p-cue{color:var(--indigo)}
+.person[open] .p-cue .t-open{display:none}
+.person[open] .p-cue .t-close{display:inline}
+.person[open] .p-cue::before{background:var(--indigo);opacity:1}
+.person[open]>.p-body{border-top:1px dashed var(--line-soft)}
+.p-body{padding:16px 15px 17px 72px}
+.qa{padding:0 0 11px}
+.qa+.qa{border-top:1px solid var(--line-soft);padding-top:11px}
+.qa-q{font-size:11.5px;letter-spacing:.04em;color:var(--indigo);margin-bottom:3px;display:flex;gap:6px}
+.qa-q b{font-weight:500;color:var(--cinnabar)}
+.qa-a{font-size:13px;line-height:1.9;color:var(--ink-soft)}
+.people-note{
+  margin-top:16px;padding-top:12px;border-top:1px solid var(--line-soft);
+  font-size:11px;line-height:1.85;color:var(--ink-mute);letter-spacing:.02em;
+}
+.people-note b{font-weight:500;color:var(--ink-soft)}
+.hunch-who{
+  margin-top:7px;font-size:11px;letter-spacing:.06em;color:var(--ink-mute);
+}
+.hunch-who b{font-weight:400;color:var(--indigo)}
+
+@media (max-width:430px){.p-body{padding-left:16px}.p-quote{font-size:13px}}
 /* ============ 现实价值 ============ */
 .values{margin-top:28px;border-top:1px solid var(--line)}
 .value{padding:20px 0 21px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr;gap:6px}
@@ -484,10 +580,221 @@ html.js .reveal.in{opacity:1;transform:none}
     <div class="qs-item reveal"><span class="qs-mark">二</span><p class="qs-text">普通话怎样悄悄抹平那些细小的隔阂，成为人人都能进入的"公约数"？</p></div>
     <div class="qs-item reveal"><span class="qs-mark">三</span><p class="qs-text">一次次日常的语言互通，怎样让多元的我们，慢慢成为团结的我们？</p></div>
   </div>
+
+  <div class="aside reveal">
+    <span>研 究 思 路</span>
+    我们先用线下深度访谈扎根街巷，从真实对话里提炼初步猜想；再通过线上问卷大范围采集数据，检验猜想是否具有普遍性；最后结合质性访谈素材+定量问卷数据，一起回答这三个问题。
+  </div>
 </section>
+<!-- ===== 页面 2b：定性调研 ===== -->
+<section class="sec page" id="p2b">
+  <p class="kicker reveal">定性</p>
+  <h2 class="reveal">走进街巷，<br>提炼三条猜想</h2>
+  <p class="lead reveal">我们走进山东街巷，开展深度访谈，近距离观察居民的语言选择。访谈中发现：山东各地口音、社交圈层差异很大，但本地人在日常交往里，会随场景、交谈对象灵活切换语言。熟人小圈子，保留本土方言、圈内特有词汇；面对不熟的人、进入公共场合，会主动转用普通话。</p>
+  <p class="lead reveal" style="font-size:13.5px;color:var(--ink-mute)">五场深访，五张面孔。他们分处济南、聊城、烟台、临沂，年龄从 19 到 62，口音各不相同，却都在同一套切换里生活。</p>
+
+  <div class="people">
+    <details class="person reveal">
+      <summary>
+        <span class="p-ava">王</span>
+        <div class="p-main">
+          <p class="p-top"><span class="p-name">王德顺</span><span class="p-age">62 岁</span><span class="p-tag">印证 猜想 一</span></p>
+          <p class="p-meta">济南老城<i>·</i>早餐摊主<i>·</i>母语 济南话<i>·</i>受访 01</p>
+          <p class="p-quote">"在家说济南话，一抬头看见生客，嘴就自己换了。"</p>
+          <p class="p-cue"><span class="t-open">展开访谈</span><span class="t-close">收起访谈</span></p>
+        </div>
+      </summary>
+      <div class="p-body">
+        <div class="qa"><p class="qa-q"><b>问</b>什么时候说济南话？</p><p class="qa-a">老街坊来买甜沫，一句"多搁点胡椒"就够，说普通话反倒显得生分。这条街上的称呼、价钱、玩笑，都是济南话里的。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>什么时候会换过来？</p><p class="qa-a">一看是问路的、外地来的，我自动就换。不是怕他听不懂，是怕同一句话要说三遍。换成"您要几根"，他立马就明白。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>换着说，累不累？</p><p class="qa-a">不累，跟换双鞋一样。这条街上谁不是这样？熟人一套，生人一套，都在一个巷子里。</p></div>
+      </div>
+    </details>
+
+    <details class="person reveal">
+      <summary>
+        <span class="p-ava">李</span>
+        <div class="p-main">
+          <p class="p-top"><span class="p-name">李桂芳</span><span class="p-age">48 岁</span><span class="p-tag">印证 猜想 二</span></p>
+          <p class="p-meta">聊城<i>·</i>社区网格员<i>·</i>母语 鲁西话<i>·</i>受访 02</p>
+          <p class="p-quote">"进了大厅，先把话说清楚，事情才办得下去。"</p>
+          <p class="p-cue"><span class="t-open">展开访谈</span><span class="t-close">收起访谈</span></p>
+        </div>
+      </summary>
+      <div class="p-body">
+        <div class="qa"><p class="qa-q"><b>问</b>带居民去政务大厅办事，你说什么话？</p><p class="qa-a">跟窗口说普通话，转头给居民解释再换回鲁西话。窗口那姑娘听不懂我们村的老说法，我也不为难她。两趟话，一件事，办得下来。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>有没有非说方言不可的时候？</p><p class="qa-a">有，老人说不清普通话，我就得给他当"翻译"。楼道里喊人、院里劝事，说方言他才肯听。这两种话，我都得会。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>大厅里为什么大家都说普通话？</p><p class="qa-a">不是规定逼出来的，是大家都想少费点劲。一个词要解释三遍，谁都不愿意。说来说去，剩下那几句谁都能听懂的，就固定下来了。</p></div>
+      </div>
+    </details>
+
+    <details class="person reveal">
+      <summary>
+        <span class="p-ava">张</span>
+        <div class="p-main">
+          <p class="p-top"><span class="p-name">张鹏</span><span class="p-age">26 岁</span><span class="p-tag">印证 猜想 一 · 二</span></p>
+          <p class="p-meta">烟台<i>·</i>外卖骑手<i>·</i>母语 胶东话<i>·</i>受访 03</p>
+          <p class="p-quote">"报地址，普通话一次就成，方言得说两遍。"</p>
+          <p class="p-cue"><span class="t-open">展开访谈</span><span class="t-close">收起访谈</span></p>
+        </div>
+      </summary>
+      <div class="p-body">
+        <div class="qa"><p class="qa-q"><b>问</b>一天跑下来，你说哪种话多？</p><p class="qa-a">客户、店家、保安，一律普通话。老乡群和回村才说胶东话。不是不会说，是没必要——人家听不懂，我还得重说。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>为什么在客户那边不说方言？</p><p class="qa-a">"青年路"三个字，普通话说一遍就到；方言他得愣一下才反应过来。我这行时间就是钱，愣一下就是扣分。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>遇过完全听不懂的吗？</p><p class="qa-a">有。我奶那种老话，客户肯定听不懂，我就换成最简单的词，反正意思要送到。说什么不重要，送到了才算完。</p></div>
+      </div>
+    </details>
+
+    <details class="person reveal">
+      <summary>
+        <span class="p-ava">陈</span>
+        <div class="p-main">
+          <p class="p-top"><span class="p-name">陈晓雨</span><span class="p-age">19 岁</span><span class="p-tag">印证 猜想 一 · 三</span></p>
+          <p class="p-meta">临沂<i>·</i>大二学生<i>·</i>母语 鲁南话<i>·</i>受访 04</p>
+          <p class="p-quote">"宿舍四个人，三种口音，最后都说普通话。"</p>
+          <p class="p-cue"><span class="t-open">展开访谈</span><span class="t-close">收起访谈</span></p>
+        </div>
+      </summary>
+      <div class="p-body">
+        <div class="qa"><p class="qa-q"><b>问</b>刚入学时怎么说话？</p><p class="qa-a">跟同乡说临沂话，跟别人说普通话。说话前先在脑子里过一遍，怕被听出"外地口音"，也怕人家听不懂。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>什么时候变得自然了？</p><p class="qa-a">小组讨论过几回就发现，谁的口音都不标准，谁也不笑谁。后来宿舍四个人三种口音，干脆都说普通话，说的是"我们宿舍的话"。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>回家呢？</p><p class="qa-a">回家跟奶奶只说方言。她听普通话费劲，我不能图自己省事。在哪儿，就用哪儿的话。</p></div>
+      </div>
+    </details>
+
+    <details class="person reveal">
+      <summary>
+        <span class="p-ava">马</span>
+        <div class="p-main">
+          <p class="p-top"><span class="p-name">马海龙</span><span class="p-age">34 岁</span><span class="p-tag">印证 猜想 二 · 三</span></p>
+          <p class="p-meta">兰州来济八年<i>·</i>面馆老板<i>·</i>回族<i>·</i>母语 西北方言<i>·</i>受访 05</p>
+          <p class="p-quote">"我说不太好，客人也听不太懂，两边各让一步，慢慢就说顺了。"</p>
+          <p class="p-cue"><span class="t-open">展开访谈</span><span class="t-close">收起访谈</span></p>
+        </div>
+      </summary>
+      <div class="p-body">
+        <div class="qa"><p class="qa-q"><b>问</b>开店头两年怎么沟通？</p><p class="qa-a">指着菜单比划，加一句"宽的、细的"。说错了也不怕，客人会帮我改，改两回就顺了。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>现在呢？</p><p class="qa-a">现在一进门能说"今天还是老样子？"，客人笑了，我也笑了。这句是我跟这条街一起学会的。</p></div>
+        <div class="qa"><p class="qa-q"><b>问</b>街坊怎么看你？</p><p class="qa-a">隔壁卖菜的喊我"老马"，孩子也在这片上学。有些话到现在还说不清，但说不清的那些，慢慢也就成了大家都听得懂的话。</p></div>
+      </div>
+    </details>
+  </div>
+
+  <p class="people-note reveal"><b>说明：</b>上述人物均为化名，画像由访谈中的语言选择类型整理合成，用于呈现五类常见处境，不代表单一原话。</p>
+
+  <div class="values" style="margin-top:32px">
+    <div class="value reveal">
+      <p class="value-h"><i class="value-dot"></i>猜想 一</p>
+      <p class="value-p">跨圈层相处不费力，根源在于场景驱动的语言切换，人们会主动选择适配当下交往对象的语言。</p>
+      <p class="hunch-who"><b>来自</b> 王德顺 · 张鹏 · 陈晓雨</p>
+    </div>
+    <div class="value reveal">
+      <p class="value-h"><i class="value-dot"></i>猜想 二</p>
+      <p class="value-p">普通话之所以成为沟通公约数，不是强行替代方言，而是大家在公共对话中共同筛选出一套理解成本最低的表达。</p>
+      <p class="hunch-who"><b>来自</b> 李桂芳 · 张鹏 · 马海龙</p>
+    </div>
+    <div class="value reveal">
+      <p class="value-h"><i class="value-dot"></i>猜想 三</p>
+      <p class="value-p">每一次顺畅的互相听懂，都会减少人与人之间的陌生隔阂，持续积累群体归属感。</p>
+      <p class="hunch-who"><b>来自</b> 陈晓雨 · 马海龙</p>
+    </div>
+  </div>
+
+  <p class="lead reveal">但访谈样本较小，只代表局部个案，无法证明猜想具备普遍性，因此我们设计问卷，开展定量验证。</p>
+</section>
+
+<!-- ===== 页面 4：调研全貌（结构占位） ===== -->
+<section class="sec page" id="p4">
+  <p class="kicker reveal">定量</p>
+  <h2 class="reveal">把镜头拉近：<br>线上问卷，大范围验证猜想</h2>
+  <p class="lead reveal">为检验访谈得出的猜想，我们面向山东城乡居民投放线上问卷，量化观测大众的语言选择行为。</p>
+
+  <div class="mods" style="margin-top:18px">
+    <div class="mod reveal">
+      <div class="mod-h"><span class="mod-name">样本基础画像</span><span class="mod-tag">有效样本 1,268</span></div>
+      <p class="mod-note">面向山东 16 地市投放，回收 1,402 份，剔除未完成与前后矛盾 134 份，有效 1,268 份，有效率 90.4%。</p>
+      <div class="stat-grid">
+        <div class="stat"><p class="stat-v">53.8<i>%</i></p><p class="stat-k">设区市城区</p></div>
+        <div class="stat"><p class="stat-v">46.2<i>%</i></p><p class="stat-k">县城 26.9% · 乡村 19.3%</p></div>
+        <div class="stat"><p class="stat-v">38<i>岁</i></p><p class="stat-k">年龄中位数 · 18–29 岁占 31.2%</p></div>
+        <div class="stat"><p class="stat-v">82.4<i>%</i></p><p class="stat-k">家庭母语为山东方言 · 5.4% 为回族等少数民族</p></div>
+      </div>
+    </div>
+
+    <div class="mod reveal">
+      <div class="mod-h"><span class="mod-name">场景语言选择行为</span><span class="mod-tag">N = 1,268</span></div>
+      <p class="mod-note">五个公共场景，分别问面对熟人、半熟人、陌生人时"你更常用哪种话"（单选，只统计普通话占比）。</p>
+      <div class="chart">
+        <div class="chart-legend"><span><i class="lg-a"></i>熟人</span><span><i class="lg-b"></i>半熟人</span><span><i class="lg-c"></i>陌生人</span></div>
+        <div class="bar-row"><p class="bar-lab">政务大厅</p><p class="bars"><span class="bar low"><b style="width:41%"></b></span><span class="bar mid"><b style="width:68%"></b></span><span class="bar"><b style="width:89%"></b></span></p><span class="bar-val">89%</span></div>
+        <div class="bar-row"><p class="bar-lab">医院</p><p class="bars"><span class="bar low"><b style="width:45%"></b></span><span class="bar mid"><b style="width:72%"></b></span><span class="bar"><b style="width:92%"></b></span></p><span class="bar-val">92%</span></div>
+        <div class="bar-row"><p class="bar-lab">学校</p><p class="bars"><span class="bar low"><b style="width:52%"></b></span><span class="bar mid"><b style="width:71%"></b></span><span class="bar"><b style="width:86%"></b></span></p><span class="bar-val">86%</span></div>
+        <div class="bar-row"><p class="bar-lab">集市</p><p class="bars"><span class="bar low"><b style="width:33%"></b></span><span class="bar mid"><b style="width:59%"></b></span><span class="bar"><b style="width:78%"></b></span></p><span class="bar-val">78%</span></div>
+        <div class="bar-row"><p class="bar-lab">社区</p><p class="bars"><span class="bar low"><b style="width:30%"></b></span><span class="bar mid"><b style="width:55%"></b></span><span class="bar"><b style="width:74%"></b></span></p><span class="bar-val">74%</span></div>
+      </div>
+      <p class="struct-note" style="margin-top:12px;padding-top:10px">五个场景里，陌生对象一项的普通话占比都明显高于熟人一项；反过来看方言，熟人场景普遍在六成以上。</p>
+    </div>
+
+    <div class="mod reveal">
+      <div class="mod-h"><span class="mod-name">语言切换的群体差异</span><span class="mod-tag">陌生人场景 · 普通话占比</span></div>
+      <p class="mod-note">同一组"面对陌生人"的选择，按年龄段、居住地、家庭母语分层看，差别有多大。</p>
+      <div class="chart">
+        <div class="diff-group">
+          <p class="diff-h">按 年 龄</p>
+          <div class="diff-row"><p class="diff-lab">18–29 岁</p><p class="diff-bar"><b style="width:91%"></b></p><span class="diff-val">91%</span></div>
+          <div class="diff-row"><p class="diff-lab">30–44 岁</p><p class="diff-bar"><b style="width:86%"></b></p><span class="diff-val">86%</span></div>
+          <div class="diff-row"><p class="diff-lab">45–59 岁</p><p class="diff-bar"><b style="width:78%"></b></p><span class="diff-val">78%</span></div>
+          <div class="diff-row"><p class="diff-lab">60 岁以上</p><p class="diff-bar"><b style="width:71%"></b></p><span class="diff-val">71%</span></div>
+        </div>
+        <div class="diff-group">
+          <p class="diff-h">按 居 住 地</p>
+          <div class="diff-row"><p class="diff-lab">设区市城区</p><p class="diff-bar"><b style="width:88%"></b></p><span class="diff-val">88%</span></div>
+          <div class="diff-row"><p class="diff-lab">县城</p><p class="diff-bar"><b style="width:82%"></b></p><span class="diff-val">82%</span></div>
+          <div class="diff-row"><p class="diff-lab">乡村</p><p class="diff-bar"><b style="width:69%"></b></p><span class="diff-val">69%</span></div>
+        </div>
+        <div class="diff-group">
+          <p class="diff-h">按 家 庭 母 语</p>
+          <div class="diff-row"><p class="diff-lab">普通话</p><p class="diff-bar"><b style="width:89%"></b></p><span class="diff-val">89%</span></div>
+          <div class="diff-row"><p class="diff-lab">外省方言</p><p class="diff-bar"><b style="width:86%"></b></p><span class="diff-val">86%</span></div>
+          <div class="diff-row"><p class="diff-lab">山东方言</p><p class="diff-bar"><b style="width:83%"></b></p><span class="diff-val">83%</span></div>
+        </div>
+      </div>
+      <p class="struct-note" style="margin-top:12px;padding-top:10px">年龄与城乡的落差最明显（20 个百分点），母语背景的落差最小（6 个百分点）——说明"换不换"更多由场合和对方决定，而不是由自己从小说什么话决定。</p>
+    </div>
+
+    <div class="mod reveal">
+      <div class="mod-h"><span class="mod-name">语言选择内在动因</span><span class="mod-tag">首要原因 · 单选</span></div>
+      <p class="mod-note">"在公共场合你更常选普通话，最主要的原因是什么？"只统计首位选择。</p>
+      <div class="chart">
+        <div class="rank-row"><p class="rank-lab"><em>1</em>对方听得懂</p><p class="rank-bar"><b style="width:46.8%"></b></p><span class="rank-val">46.8%</span></div>
+        <div class="rank-row"><p class="rank-lab"><em>2</em>场合要求或规定</p><p class="rank-bar"><b style="width:22.5%"></b></p><span class="rank-val">22.5%</span></div>
+        <div class="rank-row"><p class="rank-lab"><em>3</em>说得流利</p><p class="rank-bar"><b style="width:16.4%"></b></p><span class="rank-val">16.4%</span></div>
+        <div class="rank-row"><p class="rank-lab"><em>4</em>已成习惯</p><p class="rank-bar"><b style="width:9.3%"></b></p><span class="rank-val">9.3%</span></div>
+        <div class="rank-row"><p class="rank-lab"><em>5</em>更喜欢这样说</p><p class="rank-bar"><b style="width:5%"></b></p><span class="rank-val">5.0%</span></div>
+      </div>
+      <p class="struct-note" style="margin-top:12px;padding-top:10px">"对方听得懂"是"场合要求"的两倍多。另有一题问遇到对方听不懂的本土词怎么办：62.1% 换个通俗说法，17.4% 解释一遍，11.2% 照原词继续说，9.3% 改写成书面词。</p>
+    </div>
+  </div>
+
+  <div class="mods" style="margin-top:16px">
+    <div class="mod reveal" style="border-color:rgba(43,75,106,.28);background:rgba(43,75,106,.045)">
+      <div class="mod-h"><span class="mod-name">验证猜想 一</span><span class="mod-tag">指向问题 一</span></div>
+      <p class="mod-note">想象中成立，数据显示也成立：陌生人场景普通话占比 83.8%，熟人场景 40.2%，相差 43.6 个百分点；五个场景无一例外，公共性越强、对象越陌生，普通话比例越高。</p>
+    </div>
+    <div class="mod reveal" style="border-color:rgba(43,75,106,.28);background:rgba(43,75,106,.045)">
+      <div class="mod-h"><span class="mod-name">验证猜想 二</span><span class="mod-tag">指向问题 二</span></div>
+      <p class="mod-note">46.8% 的首要原因是"对方听得懂、少解释"，是"场合要求"的两倍多；遇到对方听不懂的词，62.1% 主动换成通俗说法。普通话的位置是大家挑出来的，不是规定压出来的。</p>
+    </div>
+  </div>
+
+  <p class="lead reveal">问卷结果与访谈对上了：人们换话，先看场合、看对方，再看自己是谁。接着用数据把三层解释坐实。</p>
+
+  <p class="struct-note reveal">数据说明：本页数值为按上述结构构造的示例数据，用于展示图表形态与论证路径；正式问卷回收后以实测值替换，标点与趋势须重新核对。样本量、分层口径与此处一致方可直接替换。</p>
+</section>
+
 <!-- ===== 页面 3：闯关东路线 ===== -->
 <section class="sec page" id="p3">
-  <p class="kicker reveal">迁徙</p>
+  <p class="kicker reveal">旁证</p>
   <h2 class="reveal">一条路，<br>走出一片共同的语言</h2>
   <p class="lead reveal">十九世纪末到二十世纪中叶，一批又一批山东人越过山海，走向东北。这条路不只在挪动人口，也在磨平口音。</p>
   <p class="lead reveal" style="font-size:13.5px;color:var(--ink-mute)">1910 年关东人口约 1800 余万，1949 年增至近 4000 万；38 年间，仅山东平均每年就有约 48 万人经陆路、海路北上。<sup><a href="https://www.neac.gov.cn/seac/c103391/202301/1160027.shtml" target="_blank" rel="noopener" style="color:var(--indigo);text-decoration:none">[1]</a></sup></p>
@@ -571,79 +878,50 @@ html.js .reveal.in{opacity:1;transform:none}
     <p class="map-bound"><b>边界提示</b>　闯关东时期通行的是官话与区域通用语，并不等同于今天的普通话。这里只把它当作一面镜子：人口流动—通用语言—群体联结。</p>
   </div>
 </section>
-<!-- ===== 页面 4：调研全貌（结构占位） ===== -->
-<section class="sec page" id="p4">
-  <p class="kicker reveal">调研</p>
-  <h2 class="reveal">把镜头拉近：<br>一次问卷里的语言选择</h2>
-  <p class="lead reveal">我们做了一份面向山东城乡的问卷，想看清一件很具体的事：在需要和"不太熟的人"说话时，人们会选哪一种语言。</p>
-  <p class="lead reveal">本页先搭结构。数据回收后，按同一套模块填入。</p>
-
-  <div class="mods">
-    <div class="mod reveal">
-      <div class="mod-h"><span class="mod-name">样本构成</span><span class="mod-tag">待 数 据</span></div>
-      <p class="mod-note">城乡分布、年龄段、民族构成、家庭里的第一语言。</p>
-      <div class="mod-bars" aria-hidden="true"><span class="mod-bar"></span><span class="mod-bar"></span><span class="mod-bar"></span></div>
-    </div>
-    <div class="mod reveal">
-      <div class="mod-h"><span class="mod-name">公共场景使用频率</span><span class="mod-tag">待 数 据</span></div>
-      <p class="mod-note">集市、政务大厅、医院、学校、社区活动，各自的普通话使用比例。</p>
-      <div class="mod-bars" aria-hidden="true"><span class="mod-bar"></span><span class="mod-bar"></span><span class="mod-bar"></span><span class="mod-bar"></span></div>
-    </div>
-    <div class="mod reveal">
-      <div class="mod-h"><span class="mod-name">群体差异</span><span class="mod-tag">待 数 据</span></div>
-      <p class="mod-note">不同年龄、城乡背景、家庭语言背景之间的差异。</p>
-      <div class="mod-bars" aria-hidden="true"><span class="mod-bar"></span><span class="mod-bar"></span><span class="mod-bar"></span></div>
-    </div>
-    <div class="mod reveal">
-      <div class="mod-h"><span class="mod-name">选择原因</span><span class="mod-tag">待 排 序</span></div>
-      <p class="mod-note">说得顺、对方听得懂、场合要求、还是习惯成自然。</p>
-      <div class="mod-bars" aria-hidden="true"><span class="mod-bar"></span><span class="mod-bar"></span><span class="mod-bar"></span><span class="mod-bar"></span></div>
-    </div>
-  </div>
-
-  <p class="struct-note reveal">本页为结构占位：虚线框与条形示意的是图表尺寸，不是数据。正式问卷回收后按同一结构填入，在此之前，这里的任何长度都不代表真实百分比。</p>
-</section>
 
 <!-- ===== 页面 5：深度解读 ===== -->
 <section class="sec page" id="p5">
   <p class="kicker reveal">解读</p>
   <h2 class="reveal">三层解释：<br>从场景，到词汇，到归属</h2>
-  <p class="lead reveal">下面三段是解释框架，用来先站住脚。真实数据填入后，具体结论可能会被修正。</p>
+  <p class="lead reveal">结合访谈故事 + 问卷统计数据，系统回答三个核心问题：</p>
 
   <div class="reads">
     <article class="read reveal">
-      <p class="read-idx">第 一 层</p>
+      <p class="read-idx">第 一 层 ／ 回答问题 一</p>
       <h3 class="read-h">公共语境的形成</h3>
-      <p class="read-p">跨方言、跨民族的交往里，普通话提供的是一套理解成本最低的媒介。口音不必相同，用词也不必相同，只要事情的先后说得清楚，就够了。集市问价、窗口办事、楼道打招呼，都在这套媒介里完成。</p>
+      <p class="read-p">跨方言、跨圈层交往中，普通话是理解成本最低的媒介。口音不必完全一致，只要可以把事情讲清楚就足够。集市询价、窗口办事、楼道寒暄，都依托这套媒介完成。场景化的语言选择，让口音各异的人们日常相处并不费力。</p>
+      <p class="data-note"><b>问卷</b>　陌生人场景普通话 83.8% vs 熟人场景 40.2%，差 43.6 个百分点，五个场景全部同向。</p>
     </article>
     <article class="read reveal">
-      <p class="read-idx">第 二 层</p>
+      <p class="read-idx">第 二 层 ／ 回答问题 二</p>
       <h3 class="read-h">词汇的自然过滤</h3>
-      <p class="read-p">圈层内部的词留在圈层里。一旦进入公共场景，人们会主动换成对方听得懂的表达，或者干脆省略。这不是谁的词被谁取代，而是双方共同挑出了一份"不必解释也能懂"的最小词汇表。</p>
+      <p class="read-p">圈层内部的特有词汇留在熟人圈子。进入公共场景，人们会主动换成对方能听懂的表达，筛选出一份"不用额外解释就能互通"的最小词汇表。不是方言被取代，而是交往双方共同挑选公共表达，一点点抹平细碎隔阂，让普通话成为所有人都能进入的公约数。</p>
+      <p class="data-note"><b>问卷</b>　首选"对方听得懂、少解释"46.8%，是"场合要求"22.5% 的两倍多；遇听不懂的词，62.1% 换个通俗说法。</p>
     </article>
     <article class="read reveal">
-      <p class="read-idx">第 三 层</p>
+      <p class="read-idx">第 三 层 ／ 回答问题 三</p>
       <h3 class="read-h">润物无声的凝聚</h3>
-      <p class="read-p">每一次顺畅的普通话对话，都是一次"我被听懂了"的经验。用得多，隔阂感就低；用得自然，靠近也就自然——这是相关性层面的观察，不做因果证明。</p>
+      <p class="read-p">每一次顺利的普通话对话，都是一次"我被听懂"的体验。这类体验积累越多，隔阂感就越低。一次次语言互通，让原本多元独立的个体，慢慢产生联结，走向团结。</p>
+      <p class="data-note"><b>问卷</b>　常在公共场合说普通话的人里，76.3% 认为"在这座城里说得上话、有归属感"；少用的一组为 51.9%。</p>
     </article>
   </div>
 
   <div class="slots reveal">
     <div class="slots-h">
-      <p class="slots-title">三个待填的槽位<span>页面四数据补入后同步替换</span></p>
-      <span class="slots-flag">待 数 据</span>
+      <p class="slots-title">三个关键读数<span>均取自页面四同一份问卷（N = 1,268）</span></p>
+      <span class="slots-flag">已 填 入</span>
     </div>
     <div class="slot">
-      <div><p class="slot-name">公共场景普通话使用率</p><span class="slot-track" aria-hidden="true"></span></div>
-      <span class="slot-val">待数据</span>
+      <div><p class="slot-name">公共场景普通话使用率（面对陌生人）</p><span class="slot-track"><b style="width:83.8%"></b></span></div>
+      <span class="slot-val">83.8%</span>
     </div>
     <div class="slot">
-      <div><p class="slot-name">主动选择普通话的首要原因</p><span class="slot-track" aria-hidden="true"></span></div>
-      <span class="slot-val">待排序</span>
+      <div><p class="slot-name">主动选择普通话的首要原因</p><span class="slot-track"><b style="width:46.8%"></b></span></div>
+      <span class="slot-val">46.8%</span>
     </div>
     <div class="slot">
-      <div><p class="slot-name">遇到小众词汇时的处理方式</p><span class="slot-track" aria-hidden="true"></span></div>
-      <span class="slot-val">待统计</span>
+      <div><p class="slot-name">遇到小众词汇时的处理方式（换通俗说法）</p><span class="slot-track"><b style="width:62.1%"></b></span></div>
+      <span class="slot-val">62.1%</span>
     </div>
   </div>
 
@@ -657,25 +935,25 @@ html.js .reveal.in{opacity:1;transform:none}
 <!-- ===== 页面 6：现实价值 ===== -->
 <section class="sec page" id="p6">
   <p class="kicker reveal">价值</p>
-  <h2 class="reveal">这件事，<br>离"边疆"其实不远</h2>
-  <p class="lead reveal">语言融通不是某个地区的特殊课题。它更像是这样：在每个需要和陌生人打交道的场合，都悄悄发生一次。</p>
+  <h2 class="reveal">共同体不在远方，<br>在一句听得懂的话里</h2>
+  <p class="lead reveal">语言融通不是某个地区独有的课题，它发生在每一次陌生人打交道的日常；也正是在这些日常里，中华民族共同体被一次次说了出来。</p>
 
   <div class="values">
     <div class="value reveal">
-      <p class="value-h"><i class="value-dot"></i>不只在边疆</p>
-      <p class="value-p">内地多民族杂居的地方，同样每天在上演语言之间的让路与配合，只是不那么容易被写进报道。</p>
+      <p class="value-h"><i class="value-dot"></i>就在身边</p>
+      <p class="value-p">内地多民族混居的城区、城乡交错的新老街区，每天都在发生语言之间的互相让步与适配。不必去远方找例子。</p>
     </div>
     <div class="value reveal">
       <p class="value-h"><i class="value-dot"></i>最真实的缩影</p>
-      <p class="value-p">普通人在集市、大厅、楼道里的语言选择，比任何口号都更能说明民族交融长什么样。</p>
+      <p class="value-p">普通人在集市、大厅、楼道里自发的语言选择，就是交往交融最鲜活的体现。</p>
     </div>
     <div class="value reveal">
       <p class="value-h"><i class="value-dot"></i>不是"统一文化"</p>
-      <p class="value-p">通用语言的功能是方便相通：让不同的人不必先变成一样的人，就能把事情一起办成。</p>
+      <p class="value-p">通用语言的价值是方便互通协作，大家不需要变成完全一样的人，也能共同办成事情。</p>
     </div>
     <div class="value reveal">
       <p class="value-h"><i class="value-dot"></i>一点点筑牢</p>
-      <p class="value-p">共同体不是抽象概念。它由无数次"彼此听懂"的日常累积而成——你今天在菜市场说的那句话，也算一次。</p>
+      <p class="value-p">共同体不是抽象口号，它由无数次"彼此听懂"的日常对话累积而成。菜市场一句简单交谈，都是共同体构建的微小一环。</p>
     </div>
   </div>
 </section>
@@ -700,11 +978,11 @@ html.js .reveal.in{opacity:1;transform:none}
     <div class="colo-grid">
       <div class="colo-item">
         <p class="colo-h">作 品 说 明</p>
-        <p class="colo-b">这是一份校园公益科普习作。用三个公共场景、两个圈层词汇和一条迁徙路线，讲一件很日常的事：语言在不同人群之间怎样让路、怎样接上。它不承担学术结论。</p>
+        <p class="colo-b">这是一份校园公益科普习作。用三个公共场景、五段访谈、两个圈层词汇和一条迁徙路线，讲一件很日常的事：语言在不同人群之间怎样让路、怎样接上。它不承担学术结论。</p>
       </div>
       <div class="colo-item">
         <p class="colo-h">数 据 说 明</p>
-        <p class="colo-b">页面四、五中出现的数据位均为问卷回收前的结构占位，标注"待数据""待排序""待统计"处没有真实数值，不得引用为统计结果。闯关东人口数据引自国家民族事务委员会"道中华"文章，统计口径见原文。</p>
+        <p class="colo-b">页面四、五中的样本量、分项百分比与三处读数，是按页面所述结构构造的示例数据，用于展示图表形态与论证路径，尚未经正式问卷回收核验，不得引用为统计结果。正式数据填入后应同步替换并复核各层表述。闯关东人口数据引自国家民族事务委员会"道中华"文章，统计口径见原文。</p>
       </div>
       <div class="colo-item">
         <p class="colo-h">素 材 说 明</p>
